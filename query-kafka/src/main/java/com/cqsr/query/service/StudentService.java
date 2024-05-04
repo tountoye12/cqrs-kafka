@@ -42,5 +42,8 @@ public class StudentService {
 			existStudent.setGrade(student.getGrade());
 			studentRepository.save(existStudent);
 		}
+		else if(studentEvent.getType().equals("deleteStudent")) {
+			studentRepository.delete(student);
+		}
 	}
 }
