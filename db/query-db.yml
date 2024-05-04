@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: query-db
     environment:
-      POSTGRES_PASSWORD: root
+      POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     restart: unless-stopped
