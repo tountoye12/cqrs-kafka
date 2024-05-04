@@ -20,24 +20,26 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/students")
 public class StudentController {
 
-	private final StudentService studentService;
+	private  StudentService studentService;
+	public StudentController(StudentService studentService) {
+		this.studentService = studentService;
+	}
 	
 	@PostMapping
-	public ResponseEntity<?> createNewData(@RequestBody Student student){
-		
-		
-		return null;
+	public ResponseEntity<Student> createNewData(@RequestBody Student student){
+
+		return ResponseEntity.ok(studentService.createStudent(student));
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<?> editStudent(@PathVariable(name = "id") long id, @RequestBody Student student){
+	public ResponseEntity<Student> editStudent(@PathVariable(name = "id") Long id, @RequestBody Student student){
 		
-		return null;
+		return ResponseEntity.ok(studentService.updateStudent(id, student));
 	}
 	
 	@DeleteMapping("{id")
-	public ResponseEntity<Long> deleteStudent(@PathVariable(name = "id") long id){
+	public ResponseEntity<Student> deleteStudent(@PathVariable(name = "id") Long id){
 		
-		return null;
+		return ResponseEntity.ok(studentService.deleteStudent(id));
 	}
 }
