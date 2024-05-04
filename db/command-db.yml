@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  lab-mysql:
+    image: mysql
+    container_name: command-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    restart: unless-stopped

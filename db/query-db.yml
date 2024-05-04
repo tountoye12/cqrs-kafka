@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  some-postgres:
+    image: postgres
+    container_name: query-db
+    environment:
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
