@@ -1,29 +1,32 @@
-package com.cqsr.command.service;
+package com.cqsr.service;
 
-import com.cqsr.command.event.StudentEvent;
-import com.cqsr.command.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.cqsr.command.model.Student;
+import com.cqsr.event.StudentEvent;
+import com.cqsr.model.Student;
+import com.cqsr.repository.StudentRepository;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class StudentService {
 
 	@Value("${spring.kafka.template.default-topic}")
 	private String topic;
 	private StudentRepository studentRepository;
 	private KafkaTemplate<String, StudentEvent> kafkaTemplate;
+	
 	public StudentService(StudentRepository studentRepository, KafkaTemplate<String, StudentEvent> kafkaTemplate) {
 		this.studentRepository = studentRepository;
 		this.kafkaTemplate = kafkaTemplate;
 	}
+	
 	public Student createStudent(Student student) {
-		// TODO Auto-generated method stub
+		log.info("Student -> " + student);
+		
 		var retStudent = studentRepository.save(student);
 		var studentEvent = new StudentEvent("createStudent", retStudent);
 		kafkaTemplate.send(topic, studentEvent);

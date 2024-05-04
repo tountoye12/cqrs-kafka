@@ -1,9 +1,10 @@
-package com.cqsr.command.repository;
+package com.cqsr.repository;
 
 
-import com.cqsr.command.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.cqsr.model.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {

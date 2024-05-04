@@ -1,7 +1,8 @@
-package com.cqsr.command.event;
+package com.cqsr.event;
 
 
-import com.cqsr.command.model.Student;
+import com.cqsr.model.Student;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

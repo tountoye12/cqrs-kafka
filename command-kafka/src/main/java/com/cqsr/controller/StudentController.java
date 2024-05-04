@@ -1,6 +1,5 @@
-package com.cqsr.command.controller;
+package com.cqsr.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,17 +9,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cqsr.command.model.Student;
-import com.cqsr.command.service.StudentService;
-
-import lombok.RequiredArgsConstructor;
+import com.cqsr.model.Student;
+import com.cqsr.service.StudentService;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/students")
 public class StudentController {
 
-	private  StudentService studentService;
+	private StudentService studentService;
+	
 	public StudentController(StudentService studentService) {
 		this.studentService = studentService;
 	}
@@ -37,7 +34,7 @@ public class StudentController {
 		return ResponseEntity.ok(studentService.updateStudent(id, student));
 	}
 	
-	@DeleteMapping("{id")
+	@DeleteMapping("{id}")
 	public ResponseEntity<Student> deleteStudent(@PathVariable(name = "id") Long id){
 		
 		return ResponseEntity.ok(studentService.deleteStudent(id));
