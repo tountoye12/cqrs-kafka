@@ -5,6 +5,7 @@ services:
     image: mysql
     container_name: command-db
     environment:
+      MYSQL_DATABASE: command-db
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
