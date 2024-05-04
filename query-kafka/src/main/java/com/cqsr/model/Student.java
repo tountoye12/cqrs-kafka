@@ -1,4 +1,4 @@
-package com.cqsr.query.model;
+package com.cqsr.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

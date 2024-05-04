@@ -1,4 +1,4 @@
-package com.cqsr.query.controller;
+package com.cqsr.controller;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cqsr.query.model.Student;
-import com.cqsr.query.service.StudentService;
+import com.cqsr.model.Student;
+import com.cqsr.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,13 +20,13 @@ public class StudentController {
 
 	private final StudentService studentService;
 	
-	@GetMapping
+	@GetMapping("{id}")
 	public ResponseEntity<?> getStudent(long id){
 		Student student = studentService.getStudentById(id);
 		return new ResponseEntity<>(student, HttpStatus.FOUND);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping
 	public ResponseEntity<?> getAllStudent(){
 		List<Student> students = studentService.getAllStudents();
 		return new ResponseEntity<>(students, HttpStatus.OK);

@@ -1,27 +1,28 @@
+server:
+ port: 8081
+ 
 spring:
  application:
   name: query-kafka-api
 
-
  datasource:
-   url: jdbc:postgresql://localhost:5432/querydb
-   username: root
-   password: password
-   driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/querydb
+    username: root
+    password: password
+    driver-class-name:
+     com.mysql.cj.jdbc.Driver
    
  jpa:
-  hibernate:
-   ddl-auto: update  
-  show-sql: true
-  properties:
-   hibernate:
-    format_sql: true
-  database: postgresql 
-  database-platform: org.hibernate.dialect.PostgreSLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
   
  kafka:
   template:
-    default-topic: student-topic
+   default-topic: student-topic
   consumer:
    bootstrap-servers: localhost:9092
    group-id: student-group1
@@ -34,4 +35,4 @@ spring:
    spring:
     json:
      trusted:
-      packages: org.miaoubich.event
+      packages: com.cqsr.event

@@ -1,4 +1,4 @@
-package com.cqsr.query.service;
+package com.cqsr.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.cqsr.query.event.StudentEvent;
-import com.cqsr.query.model.Student;
-import com.cqsr.query.repository.StudentRepository;
+import com.cqsr.event.StudentEvent;
+import com.cqsr.model.Student;
+import com.cqsr.repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
 
