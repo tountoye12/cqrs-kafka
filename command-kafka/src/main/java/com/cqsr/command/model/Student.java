@@ -21,6 +21,6 @@ public class Student {
 	private long id;
 	private String firstname;
 	private String lastname;
-	private String course;
-	private double grade;
+//	private String course;
+//	private double grade;
 }

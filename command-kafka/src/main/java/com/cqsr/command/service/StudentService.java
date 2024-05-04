@@ -37,8 +37,6 @@ public class StudentService {
 
 		student.setLastname(request.getLastname());
 		student.setFirstname(request.getFirstname());
-		student.setCourse(request.getCourse());
-		student.setGrade(request.getGrade());
 		studentRepository.save(student);
 		var studentEvent = new StudentEvent("updateStudent", student);
 		kafkaTemplate.send(topic, studentEvent);
