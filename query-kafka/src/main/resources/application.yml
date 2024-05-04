@@ -24,7 +24,7 @@ spring:
     default-topic: student-topic
   consumer:
    bootstrap-servers: localhost:9092
-   group-id: lina-group
+   group-id: student-group1
    auto-offset-reset: earliest
    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

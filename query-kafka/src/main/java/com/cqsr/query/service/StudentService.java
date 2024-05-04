@@ -3,8 +3,10 @@ package com.cqsr.query.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import com.cqsr.query.event.StudentEvent;
 import com.cqsr.query.model.Student;
 import com.cqsr.query.repository.StudentRepository;
 
@@ -23,5 +25,22 @@ public class StudentService {
 	
 	public List<Student> getAllStudents(){
 		return studentRepository.findAll();
+	}
+	
+	@KafkaListener(topics = "student-topic", groupId = "student-group1")
+	public void processStudentEvents(StudentEvent studentEvent) {
+		Student student = studentEvent.getStudent();
+		
+		if(studentEvent.getType().equals("createStudent")) {
+			studentRepository.save(student);
+		}
+		else if(studentEvent.getType().equals("updateStudent")) {
+			Student existStudent = studentRepository.findById(student.getId()).get();
+			existStudent.setFirstname(student.getFirstname());
+			existStudent.setLastname(student.getLastname());
+			existStudent.setCourse(student.getCourse());
+			existStudent.setGrade(student.getGrade());
+			studentRepository.save(existStudent);
+		}
 	}
 }
