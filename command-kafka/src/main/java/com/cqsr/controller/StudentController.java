@@ -28,13 +28,13 @@ public class StudentController {
 		return ResponseEntity.ok(studentService.createStudent(student));
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Student> editStudent(@PathVariable(name = "id") Long id, @RequestBody Student student){
 		
 		return ResponseEntity.ok(studentService.updateStudent(id, student));
 	}
-	
-	@DeleteMapping("{id}")
+
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Student> deleteStudent(@PathVariable(name = "id") Long id){
 		
 		return ResponseEntity.ok(studentService.deleteStudent(id));
